@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./website
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: livredor
+      MYSQL_USER: soumia
+      MYSQL_PASSWORD: soumia123
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
